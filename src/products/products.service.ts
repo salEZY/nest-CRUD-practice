@@ -21,5 +21,6 @@ export class ProductsService {
 
     delete(id: string): Product[] {
         return this.products.filter(p => p.id !== id)
+
     }
 }
