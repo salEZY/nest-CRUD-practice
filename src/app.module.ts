@@ -15,10 +15,10 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3306,
+      port: parseInt(process.env.DB_PORT),
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: 'nest-db',
+      database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true
     }),
@@ -27,10 +27,8 @@ import { ConfigModule } from '@nestjs/config';
   providers: [AppService],
 })
 export class AppModule {
-
-
-  constructor(private readonly connection: Connection) {
-    console.log(`Connected to ${connection.options.database} on port 3306`)
+  constructor() {
+    console.log(`Connected to ${process.env.DB_NAME} on port ${process.env.DB_PORT}`)
   }
   // configure(consumer: MiddlewareConsumer) {
   //   // Several usages:
