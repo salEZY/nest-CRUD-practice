@@ -27,9 +27,7 @@ import { ConfigModule } from '@nestjs/config';
   providers: [AppService],
 })
 export class AppModule {
-  constructor() {
-    console.log(`Connected to ${process.env.DB_NAME} on port ${process.env.DB_PORT}`)
-  }
+  constructor() { }
   // configure(consumer: MiddlewareConsumer) {
   //   // Several usages:
   //   //// Middleware for all controllers
