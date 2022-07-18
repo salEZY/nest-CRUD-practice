@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, Query, Req, Res, UseFilters, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseFilters, UseInterceptors } from '@nestjs/common';
 import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
 import { TransformInterceptor } from 'src/common/interceptors/transform.interceptor';
+import { DeleteResult, UpdateResult } from 'typeorm';
 import { CreateProductDto } from './dtos/create-product.dto';
+import { UpdateProductDto } from './dtos/update-product.dto';
 import { Product } from './interfaces/product.interface';
 import { ProductsService } from './products.service';
 
@@ -16,19 +18,24 @@ export class ProductsController {
         return await this.productService.create(product)
     }
 
-    // @Get()
-    // async findAll(): Promise<Product[]> {
-    //     return this.productService.findAll()
-    // }
+    @Get()
+    async findAll(): Promise<Product[]> {
+        return this.productService.findAll()
+    }
 
-    // @Get(':id')
-    // async findOne(@Param() params): Promise<Product> {
-    //     return this.productService.findOne(params.id)
-    // }
+    @Get(':id')
+    async findOne(@Param('id') id): Promise<Product> {
+        return await this.productService.findOne(+id)
+    }
 
-    // @Delete(':id')
-    // async delete(@Param() params): Promise<Product[]> {
-    //     //return this.productService.delete(params.id)
-    //     throw new NotFoundException()
-    // }
+    @Patch(':id')
+    async update(@Param('id') id, @Body() recordToUpdate: UpdateProductDto): Promise<Product> {
+        return await this.productService.update(id, recordToUpdate)
+    }
+
+    @Delete(':id')
+    async delete(@Param('id') id): Promise<DeleteResult> {
+        return this.productService.delete(id)
+
+    }
 }

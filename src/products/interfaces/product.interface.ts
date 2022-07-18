@@ -4,3 +4,9 @@ export interface Product {
     qty: number,
     price: number
 }
+
+export interface ProductToUpdate {
+    name: string,
+    qty: number,
+    price: number
+}
