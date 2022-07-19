@@ -7,7 +7,7 @@ export class ProductDetailsEntity {
     id: number;
 
     @Column({ length: 45 })
-    part_number: string;
+    partNumber: string;
 
     @Column({ length: 45 })
     dimension: string;

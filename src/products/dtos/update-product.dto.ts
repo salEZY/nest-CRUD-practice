@@ -12,4 +12,25 @@ export class UpdateProductDto {
     @IsOptional()
     @IsNumber()
     readonly price: number
+
+
+    @IsOptional()
+    @IsString()
+    readonly partNumber: string
+
+    @IsOptional()
+    @IsString()
+    readonly dimension: string
+
+    @IsOptional()
+    @IsNumber()
+    readonly weight: number
+
+    @IsOptional()
+    @IsString()
+    readonly manufacturer: string
+
+    @IsOptional()
+    @IsString()
+    readonly origin: string
 }
