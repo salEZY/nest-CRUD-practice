@@ -1,8 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PhotoEntity } from 'src/photos/photo.entity';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreateUserDTO } from './dto/create-user.dto';
+import { UpdateUserDTO } from './dto/update-user.dto';
 import { User } from './interfaces/user';
 import { UsersEntity } from './user.entity';
 
@@ -24,6 +25,10 @@ export class UsersService {
         const user = await this.userRepository.findOne({ where: { id }, relations: ['photos'] })
         if (!user) throw new NotFoundException('Could not find user.')
         return user
+    }
+
+    async update(id: number, user: UpdateUserDTO): Promise<UpdateResult> {
+        return await this.userRepository.update(id, user)
     }
 
     async delete(id: number): Promise<DeleteResult> {
