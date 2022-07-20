@@ -11,6 +11,8 @@ export class PhotoEntity {
     @Column()
     url: string;
 
-    @ManyToOne(type => UsersEntity, userEntity => userEntity.photos)
+    @ManyToOne(type => UsersEntity, userEntity => userEntity.photos, {
+        onDelete: "CASCADE"
+    })
     user: UsersEntity
 } 

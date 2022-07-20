@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { DeleteResult } from 'typeorm';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { User } from './interfaces/user';
 import { UsersService } from './users.service';
@@ -15,5 +16,15 @@ export class UsersController {
     @Get()
     async find(): Promise<User[]> {
         return await this.userService.findAll()
+    }
+
+    @Get(':id')
+    async findOne(@Param('id', new ParseIntPipe()) id): Promise<User> {
+        return await this.userService.findOne(id)
+    }
+
+    @Delete(":id")
+    async delete(@Param('id', new ParseIntPipe()) id): Promise<DeleteResult> {
+        return await this.userService.delete(id)
     }
 }
