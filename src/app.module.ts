@@ -7,6 +7,8 @@ import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Connection } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import { PhotosModule } from './photos/photos.module';
 
 
 @Module({
@@ -20,9 +22,12 @@ import { ConfigModule } from '@nestjs/config';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: false
+      synchronize: true
     }),
-    ProductsModule],
+    ProductsModule,
+    UsersModule,
+    PhotosModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
