@@ -14,7 +14,7 @@ export class UsersEntity {
     @Column()
     password: string;
 
-    @OneToMany(type => PhotoEntity, photoEntity => photoEntity.user)
+    @OneToMany(type => PhotoEntity, photoEntity => photoEntity.user, { cascade: ['insert', 'update'], onDelete: 'CASCADE' })
     photos: PhotoEntity[]
 
 }
