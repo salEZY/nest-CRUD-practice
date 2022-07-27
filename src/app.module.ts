@@ -9,6 +9,7 @@ import { Connection } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { PhotosModule } from './photos/photos.module';
+import { QuizModule } from './quiz/quiz.module';
 
 
 @Module({
@@ -26,7 +27,8 @@ import { PhotosModule } from './photos/photos.module';
     }),
     ProductsModule,
     UsersModule,
-    PhotosModule
+    PhotosModule,
+    QuizModule
   ],
   controllers: [AppController],
   providers: [AppService],
