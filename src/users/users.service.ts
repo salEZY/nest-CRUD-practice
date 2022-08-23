@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PhotoEntity } from 'src/photos/photo.entity';
+//import { PhotoEntity } from 'src/photos/photo.entity';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
